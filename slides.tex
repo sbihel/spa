@@ -48,22 +48,15 @@
   \end{description}
 \end{frame}
 
-\begin{frame}{Interactions between DPLL and $\mathcal{T}$-solver}
-  \begin{description}
-    \item[Preprocessing] rewrite the input $\mathcal{T}$-formula into a $\mathcal{T}$-equivalent one.
-    \item[Look-ahead] Analyze current status to prune the remaining search space.
-    \item[Look-back] Recover from a failure and get information to improve future search.
-    \item[Assignment simplification] Simplify the assignment for the $\mathcal{T}$-solver.
-  \end{description}
-\end{frame}
+\begin{frame}{Preprocessing}
+  Rewrite the input $\mathcal{T}$-formula into a $\mathcal{T}$-equivalent one.
 
-\begin{frame}{Normalizing $\mathcal{T}$-atoms}
-  Eliminate $\mathcal{T}$-equivalent $\mathcal{T}$-atoms.
-\end{frame}
+  \begin{itemize}
+    \item Eliminate $\mathcal{T}$-equivalent $\mathcal{T}$-atoms.
+    \item Prevent ``obviously'' $\mathcal{T}$-inconsistent clauses.
+  \end{itemize}
 
-\begin{frame}{Static learning}
-  Prevent ``obviously'' $\mathcal{T}$-inconsistent clauses.
-
+  \metroset{block=fill}
   \begin{exampleblock}{Example}
     Incompatible value assignment
 
@@ -71,35 +64,35 @@
   \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Early pruning}
+\begin{frame}{Look-ahead: Early pruning}
   Intermediate call to $\mathcal{T}$-solver on assignment construction.
+
   Avoids checking the $\mathcal{T}$-satisfiability of all total truth assignments which extend $\mu$.
 \end{frame}
 
-\begin{frame}{$\mathcal{T}$-propagation}
+\begin{frame}{Look-ahead: $\mathcal{T}$-propagation}
+  $\mathcal{T}$-solver deducts literals on not-yet-assigned atoms.
 \end{frame}
 
-\begin{frame}{$\mathcal{T}$-backjumping}
-\end{frame}
-
-\begin{frame}{$\mathcal{T}$-learning}
+\begin{frame}{Look-back}
+  Generalizations of standard DPLL. Learns from conflict.
+  \begin{description}
+    \item[$\mathcal{T}$-backjumping] Backtracks to the highest point in the stack.
+    \item[$\mathcal{T}$-learning] Prunes the highest number of future branches.
+  \end{description}
 \end{frame}
 
 \begin{frame}{Splitting on demand}
   Delegate case-splits to the SAT solver.
 \end{frame}
 
-\begin{frame}{Clustering}
-  ``Divide-and-conquer'' approach. Partition $\mathcal{T}$-atoms in clusters which do not interfere to each-other's $\mathcal{T}$-satisfiability.
-\end{frame}
-
-\begin{frame}{Reduction of assignments}
-\end{frame}
-
-\begin{frame}{Pure-literal filtering}
-\end{frame}
-
-\begin{frame}{$\mathcal{T}$-deduced-literal filtering}
+\begin{frame}{Assignment simplification}
+  \begin{description}
+    \item[Clustering] ``Divide-and-conquer'' approach. Partition $\mathcal{T}$-atoms in clusters which do not interfere to each-other's $\mathcal{T}$-satisfiability.
+    \item[Reduction of assignments] Removes literals unnecessary to satisfy $\varphi$.
+    \item[Pure-literal filtering] Removes assignments with new polarity.
+    \item[$\mathcal{T}$-deduced-literal filtering] Removes assignments propagated on $\mathcal{T}$-valid clauses because $\mu$ is $\mathcal{T}$-equisatisfiable.
+  \end{description}
 \end{frame}
 
 
