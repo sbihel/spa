@@ -40,7 +40,7 @@
 
 \begin{frame}{DPLL($\mathcal{T}$)}
   \begin{center}
-    \includegraphics[width=0.9\textwidth]{LazySurvey_fig6}
+    \includegraphics[width=0.95\textwidth]{LazySurvey_fig6}
   \end{center}
   \begin{description}
     \item[Offline] DPLL used as a SAT solver, re-invoked each time an assignment is found $\mathcal{T}$-unsatisfiable.
@@ -64,14 +64,15 @@
   \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Look-ahead: Early pruning}
-  Intermediate call to $\mathcal{T}$-solver on assignment construction.
+\begin{frame}{Look-ahead}
+  \begin{block}{Early pruning}
+    Intermediate call to $\mathcal{T}$-solver on assignment construction.
 
-  Avoids checking the $\mathcal{T}$-satisfiability of all total truth assignments which extend $\mu$.
-\end{frame}
-
-\begin{frame}{Look-ahead: $\mathcal{T}$-propagation}
-  $\mathcal{T}$-solver deducts literals on not-yet-assigned atoms.
+    Avoids checking the $\mathcal{T}$-satisfiability of all total truth assignments which extend $\mu$.
+  \end{block}
+  \begin{block}{$\mathcal{T}$-propagation}
+    $\mathcal{T}$-solver deducts literals on not-yet-assigned atoms.
+  \end{block}
 \end{frame}
 
 \begin{frame}{Look-back}
@@ -82,9 +83,9 @@
   \end{description}
 \end{frame}
 
-\begin{frame}{Splitting on demand}
-  Delegate case-splits to the SAT solver.
-\end{frame}
+% \begin{frame}{Splitting on demand}
+%   Delegate case-splits to the SAT solver.
+% \end{frame}
 
 \begin{frame}{Assignment simplification}
   \begin{description}
@@ -104,7 +105,7 @@
   \includegraphics[width=0.9\textwidth]{interpolants_fig1.png}
 
   \begin{description}
-    \item[Lazy abstraction] iteratively refine a model
+    \item[Lazy abstraction] iteratively refine a model (First Order Logic)
   \end{description}
 \end{frame}
 
@@ -113,6 +114,19 @@
     \item[Interpolant] List of formulas derived from refutation of the path generated.
   \end{description}
 
+  Given a pair of formulas $(A, B)$, such that $A \wedge B$ is inconsistent.
+  An interpolant $\hat{A}$ has the following properties:
+  \begin{itemize}
+    \item $A$ implies $\hat{A}$, and
+    \item $\hat{A} \wedge B$ is unsatisfiable.
+  \end{itemize}
+
+  \begin{block}{Craig interpolation lemma}
+    An interpolant always exists for inconsistent formulas in FOL.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Program unwinding}
   \includegraphics[width=0.95\textwidth]{interpolants_fig2.png}
 
   For (a) it could be $\textsc{True}, L=0, \textsc{False}$.
